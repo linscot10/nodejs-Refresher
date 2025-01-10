@@ -1,10 +1,13 @@
-const express = require("express")
+require("dotenv").config()
+const express = require("express");
+const connectToDB = require("./database/db")
 
 
 const app = express()
+//  middleware
+app.use(express.json());
 
-app.use(express.json())
-
+const PORT = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
     res.json({
@@ -12,8 +15,11 @@ app.get('/', (req, res) => {
     })
 })
 
-const PORT = 3000
+
+// database
+connectToDB();
+
 app.listen(PORT, () => {
-    console.log(`database connected to Port http://localhost:${PORT}`);
+    console.log(`Server connected to Port http://localhost:${PORT}`);
 
 })
