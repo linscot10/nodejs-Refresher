@@ -28,33 +28,33 @@ async function runQueryExamples() {
             isActive: true,
             tags: ["developer", "entrepreneur"],
         })
-        // const newUser = new User({
-        //     name: "Scott ",
-        //     email: "scottlawrence@gmail.com",
-        //     age: 24,
-        //     isActive: true,
-        //     tags: ["developer", "entrepreneur"],
-        // })
+        const newUser = new User({
+            name: "Scott ",
+            email: "scottlawrence@gmail.com",
+            age: 24,
+            isActive: true,
+            tags: ["developer", "entrepreneur"],
+        })
 
 
-        // await newUser.save()
-        // console.log("created new User", newUser);
+        await newUser.save()
+        console.log("created new User", newUser);
 
-        // const allUser = await User.find({})
-        // console.log(allUser);
+        const allUser = await User.find({})
+        console.log(allUser);
 
-        // const getUserOfActiveFalse = await User.find({
-        //     isActive: false
-        // })
-        // console.log(getUserOfActiveFalse);
+        const getUserOfActiveFalse = await User.find({
+            isActive: false
+        })
+        console.log(getUserOfActiveFalse);
 
-        // const getOsuruUser = await User.findOne({
-        //     name: "Osuru "
-        // })
-        // console.log(getOsuruUser);
+        const getOsuruUser = await User.findOne({
+            name: "Osuru "
+        })
+        console.log(getOsuruUser);
 
-        // const getUserId = await User.findById(newUser._id)
-        // console.log(getUserId);
+        const getUserId = await User.findById(newUser._id)
+        console.log(getUserId);
 
         const selectedFields = await User.find().select("name email -_id")
         console.log(selectedFields);
