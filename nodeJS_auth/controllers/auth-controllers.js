@@ -17,6 +17,8 @@ const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        
+
         // user creation
 
         const newlyCreatedUser = new User({
@@ -27,7 +29,7 @@ const registerUser = async (req, res) => {
             role: role || 'user'
 
 
-            
+
 
 
 
