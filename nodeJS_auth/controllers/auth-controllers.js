@@ -1,7 +1,7 @@
 const User = require("../database/db")
 const bcrypt = require("bcryptjs")
 
-const registerUser = async () => {
+const registerUser = async (req, res) => {
     try {
 
         const { userName, email, password, role } = req.body;
@@ -49,12 +49,12 @@ const registerUser = async () => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Something Went Wrong"
+            message: "Something Went Wrong, try again"
         })
     }
 }
 
-const loginUser = async () => {
+const loginUser = async (req, res) => {
     try {
 
     } catch (error) {

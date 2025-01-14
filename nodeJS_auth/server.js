@@ -5,9 +5,7 @@ const connectDB = require("./database/db")
 const authRoutes = require("./routes/auth-routes")
 
 
-mongoose.connect("")
-    .then(() => console.log("Database is running successfully!"))
-    .catch((e) => console.log(e))
+
 
 const app = express();
 
