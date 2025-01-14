@@ -27,8 +27,10 @@ const registerUser = async (req, res) => {
             role: role || 'user'
 
 
-
             
+
+
+
         })
 
         await newlyCreatedUser.save();
