@@ -20,6 +20,7 @@ const registerUser = async (req, res) => {
         // user creation
 
         const newlyCreatedUser = new User({
+            
             userName,
             email,
             password: hashedPassword,
