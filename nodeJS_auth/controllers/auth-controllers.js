@@ -1,4 +1,4 @@
-const User = require("../database/db")
+const User = require("../model/User")
 const bcrypt = require("bcryptjs")
 
 const registerUser = async (req, res) => {
@@ -17,7 +17,7 @@ const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        
+
 
         // user creation
 
@@ -27,9 +27,6 @@ const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             role: role || 'user'
-
-
-
 
 
 
@@ -56,6 +53,7 @@ const registerUser = async (req, res) => {
 
 
     } catch (error) {
+        console.error("Error during user registration:", error);
         res.status(500).json({
             success: false,
             message: "Something Went Wrong, try again"
