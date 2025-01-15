@@ -64,6 +64,25 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
 
+        const { userName, password } = req.body;
+        const user = await User.findOne({ userName })
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid UserName"
+            })
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordMatch) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid Password"
+            })
+        }
+
     } catch (error) {
         res.status(500).json({
             success: false,
