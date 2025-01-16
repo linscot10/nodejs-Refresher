@@ -7,3 +7,5 @@ router.get('/welcome', (req, res) => {
         message: 'welcome to the home page'
     })
 })
+
+module.exports = router;
