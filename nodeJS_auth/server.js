@@ -3,6 +3,7 @@ require("dotenv").config();
 const mongoose = require('mongoose');
 const connectDB = require("./database/db")
 const authRoutes = require("./routes/auth-routes")
+const homeRoutes = require("./routes/home-routes")
 
 
 
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 connectDB()
 
 app.use("/api/auth", authRoutes)
+app.use("/api/home", homeRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server running on port http:localhost:${PORT}`);
