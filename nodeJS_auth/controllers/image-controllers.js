@@ -1,7 +1,7 @@
 const Image = require('../model/image')
 const { uploadToCloudinary } = require("../helpers/cloudinaryHelpers")
 
-const uploadImage = async (req, res) => {
+const uploadImageController = async (req, res) => {
     try {
 
         if (!req.file) {
@@ -36,5 +36,5 @@ const uploadImage = async (req, res) => {
 }
 
 module.exports = {
-    uploadImage
+    uploadImageController   
 }
