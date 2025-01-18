@@ -1,5 +1,6 @@
 const Image = require('../model/image')
 const { uploadToCloudinary } = require("../helpers/cloudinaryHelpers")
+const fs = require("fs")
 
 const uploadImageController = async (req, res) => {
     try {
@@ -20,6 +21,8 @@ const uploadImageController = async (req, res) => {
         })
 
         await newlyUploadedImage.save()
+        // if you want to remove images from local storage
+        fs.unlinkSync(req.file.path)
 
         res.status(201).json({
             success: true,
@@ -36,5 +39,5 @@ const uploadImageController = async (req, res) => {
 }
 
 module.exports = {
-    uploadImageController   
+    uploadImageController
 }
