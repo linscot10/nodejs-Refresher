@@ -113,7 +113,7 @@ const changePassword = async (req, res) => {
 
         const { oldPassword, newPassword } = req.body;
 
-        const user = new User.findById(userId);
+        const user = await User.findById(userId);
         if (!user) {
             return res.status(400).json({
                 success: false,
@@ -132,7 +132,15 @@ const changePassword = async (req, res) => {
 
         const salt = await bcrypt.genSalt(10)
         const newHashedPassword = await bcrypt.hash(newPassword, salt)
-        
+
+        user.password = newHashedPassword
+
+        await user.save()
+
+        res.status(200).json({
+            success: true,
+            message: "Password changed  successfully",
+        })
 
     } catch (error) {
         res.status(500).json({
