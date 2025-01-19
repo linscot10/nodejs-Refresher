@@ -106,4 +106,17 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = { loginUser, registerUser }
+
+const changePassword = async (req, res) => {
+    try {
+        const userId = req.userInfo.userId
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Something Went Wrong"
+        })
+    }
+}
+}
+module.exports = { loginUser, registerUser, changePassword }
