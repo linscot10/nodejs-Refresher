@@ -1,6 +1,7 @@
 const Image = require('../model/image')
 const { uploadToCloudinary } = require("../helpers/cloudinaryHelpers")
 const fs = require("fs")
+const cloudinary = 
 
 const uploadImageController = async (req, res) => {
     try {
@@ -55,6 +56,33 @@ const fetchImagesContoller = async (req, res) => {
     }
 }
 
+
+const deleteImageController = async (req, res) => {
+    try {
+        const getCurrentIdOfImageToBeDeleted = req.params.id;
+        const userId = req.userInfo.userId;
+
+        const image = await Image.findById(getCurrentIdOfImageToBeDeleted)
+        if (!image) {
+            return res.status(404).json({
+                success: false,
+                message: "Image Not Found"
+            })
+        }
+        if (image.uploadedBy.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: "You are not authorized to delete this image "
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Something Went Wrong !Please try again"
+        })
+    }
+}
 module.exports = {
     uploadImageController,
     fetchImagesContoller
