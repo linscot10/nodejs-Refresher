@@ -43,14 +43,15 @@ const createBook = async (req, res) => {
 }
 
 
-const getBookWithAuthor = async () => {
+const getBookWithAuthor = async (req, res) => {
     try {
         const books = await Book.findById(req.params.id).populate('author')
 
-        if (!book) {
+        if (!books) {
             return res.status(404).json({
                 success: false,
-                
+                message: "Book Not Found",
+                data: books
             })
         }
 
@@ -58,12 +59,13 @@ const getBookWithAuthor = async () => {
         console.log(error)
         res.status(500).json({
             success: false,
-            message: "some error occured"
+            message: "some error occured",
+
         })
     }
 }
 
 
 module.exports = {
-    createAuthor, createBook
+    createAuthor, createBook, getBookWithAuthor
 }
