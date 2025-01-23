@@ -29,7 +29,23 @@
         const messageInput = document.getElementById("message-input");
 
 
-        const userName = prompt("Enter your Username")
+        const userName = prompt("Enter your Username");
+        socket.emit("join", userName)
+
+        socket.on("userJoined", (user) => {
+            addMessage(`${user} has joined the chat`)
+        });
+
+        socket.on("userList", (user) => {
+            userList.innerHTML = user.map((user) => `<li>${user}</li>`).join("")
+        })
+
+        function addMessage(input) {
+            const messageElement = document.createElement("div");
+            messageElement.textContent = input;
+            chat.appendChild(messageElement);
+            chat.scrollTop = chat.scrollHeight;
+        }
     </script>
 </body>
 
