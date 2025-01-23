@@ -20,10 +20,29 @@ io.on("connection", (socket) => {
 
     socket.on('join', (userName) => {
         users.add(userName)
+        socket.userName = userName
 
         io.emit('userJoined', userName)
 
         io.emit('userList', Array.from(users))
+    })
+
+
+
+    socket.on("chatMessage", (message) => {
+        io.emit("chatMessage", message)
+    })
+
+    socket.on("disconnect", () => {
+        console.log("A user  is disconnected");
+        users.forEach(user => {
+            if (user === socket.userName) {
+                users.delete(user);
+                io.emit('userLeft', user)
+
+                io.emit('userList', Array.from(users))
+            }
+        })
     })
 
 })
